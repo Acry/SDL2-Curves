@@ -1,5 +1,6 @@
-//BEGIN HEAD
-//BEGIN DESCRIPTION
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma region HEAD
+#pragma region DESCRIPTION
 
 /* light SDL2 template
  * DeCasteljau Subdivision
@@ -10,27 +11,27 @@
  * connect 4 points with 3 lines
  * 
  */
-//END   DESCRIPTION
+#pragma endregion   DESCRIPTION
 
-//BEGIN INCLUDES
+#pragma region INCLUDES
 //system headers
 #include <math.h>
 //local headers
 #include "helper.h"
 #include <SDL2/SDL2_gfxPrimitives.h>
 
-//END   INCLUDES
+#pragma endregion   INCLUDES
 
-//BEGIN CPP DEFINITIONS
+#pragma region CPP DEFINITIONS
 #define WHITE 255,255,255,255
 #define BLACK 0,0,0,255
 #define RED   255,0,0,255
 #define WW 550
 #define WH (WW/16)*12
 #define POINTS 4
-//END   CPP DEFINITIONS
+#pragma endregion   CPP DEFINITIONS
 
-//BEGIN DATASTRUCTURES
+#pragma region DATASTRUCTURES
 SDL_Point points[POINTS];
 struct fpoint
 {
@@ -39,47 +40,47 @@ struct fpoint
 };
 void lerp(struct fpoint *dest, struct fpoint *a,  struct fpoint *b,  float t);
 void bezier(struct fpoint *dest, struct fpoint * a, struct fpoint * b, struct fpoint * c, struct fpoint * d, float t);
-//END	DATASTRUCTURES
+#pragma endregion	DATASTRUCTURES
 
-//BEGIN GLOBALS
+#pragma region GLOBALS
 int ww=WW;
 int wh=WH;
 
-//BEGIN VISIBLES
+#pragma region VISIBLES
 SDL_Surface    *temp_surface	= NULL;
 
 SDL_Texture    *logo		= NULL;
 SDL_Rect 	logo_dst;
-//END 	VISIBLES
+#pragma endregion 	VISIBLES
 
 SDL_Point	mouse;
 
-//END   GLOBALS
+#pragma endregion   GLOBALS
 
-//BEGIN FUNCTION PROTOTYPES
+#pragma region FUNCTION PROTOTYPES
 void assets_in	(void);
 void assets_out	(void);
-//END	FUNCTION PROTOTYPES
+#pragma endregion	FUNCTION PROTOTYPES
 
-//END 	HEAD
+#pragma endregion 	HEAD
 
-//BEGIN MAIN FUNCTION
+#pragma region MAIN FUNCTION
 int main(int argc, char *argv[])
 {
 
 (void)argc;
 (void)argv;
 
-//BEGIN INIT
+#pragma region INIT
 init();
 assets_in();
 
-//BEGIN WINDOW
+#pragma region WINDOW
 SDL_SetWindowPosition(Window,0,0);
 SDL_SetWindowSize(Window,ww,wh);
 SDL_SetWindowTitle(Window, "SDL2 Template");
 SDL_ShowWindow(Window);
-//END WINDOW
+#pragma endregion WINDOW
 
 // int r=255,g=0,b=0,a=255;
 // points[0].x=40;
@@ -109,12 +110,12 @@ for (int i=0; i<1000; ++i)
 
 SDL_Event event;
 int running = 1;
-//END   INIT
+#pragma endregion   INIT
 
-//BEGIN MAIN LOOP
+#pragma region MAIN LOOP
 while(running){
 
-	//BEGIN EVENT LOOP
+	#pragma region EVENT LOOP
 	SDL_GetMouseState(&mouse.x, &mouse.y);
 	while(SDL_PollEvent(&event)){
 		if(event.type == SDL_QUIT){
@@ -153,8 +154,8 @@ while(running){
 			}
 		}
 	}
-	//END   EVENT LOOP
-	//BEGIN RENDERING
+	#pragma endregion   EVENT LOOP
+	#pragma region RENDERING
 // 	SDL_SetRenderDrawColor(Renderer, WHITE);
 // 	SDL_RenderClear(Renderer);
 
@@ -170,28 +171,28 @@ while(running){
 	
 	
 	SDL_RenderPresent(Renderer);
-	//END   RENDERING
+	#pragma endregion   RENDERING
 }
-//END   MAIN LOOP
+#pragma endregion   MAIN LOOP
 
 assets_out();
 exit_();
 return EXIT_SUCCESS;
 
 }
-//END   MAIN FUNCTION
+#pragma endregion   MAIN FUNCTION
 
-//BEGIN FUNCTIONS
+#pragma region FUNCTIONS
 void assets_in(void)
 {
 
-	//BEGIN LOGO
+	#pragma region LOGO
 	temp_surface = IMG_Load("./assets/gfx/logo.png");
 	logo = SDL_CreateTextureFromSurface(Renderer, temp_surface);
 	SDL_QueryTexture(logo, NULL, NULL, &logo_dst.w, &logo_dst.h);
 	logo_dst.x=(ww/2)-(logo_dst.w/2);
 	logo_dst.y=(wh/2)-(logo_dst.h/2);
-	//END 	LOGO
+	#pragma endregion 	LOGO
 
 }
 
@@ -216,4 +217,4 @@ void lerp(struct fpoint *dest, struct fpoint *a, struct fpoint *b, float t)
 	dest->x = a->x + (b->x-a->x)*t;
 	dest->y = a->y + (b->y-a->y)*t;
 }
-//END   FUNCTIONS
+#pragma endregion   FUNCTIONS

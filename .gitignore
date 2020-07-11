@@ -1,0 +1,10 @@
+*.dll
+.kdev4/
+LICENSE.zlib.txt
+.vscode/
+1
+2
+3
+4
+curves.kdev4
+casteljau
